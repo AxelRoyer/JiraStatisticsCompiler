@@ -4,7 +4,8 @@ define(['lib/react'], function(React) {
       return {
         url: "https://jira.caplin.com",
         username: "jonp",
-        password: ""
+        password: "",
+        project: ""
       }
     },
     changeUrl: function(e) {
@@ -15,6 +16,11 @@ define(['lib/react'], function(React) {
     changeUsername: function(e) {
       this.setState({
         username: e.target.value
+      });
+    },
+    changeProject: function(e) {
+      this.setState({
+          project: e.target.value
       });
     },
     changePassword: function(e) {
@@ -28,30 +34,30 @@ define(['lib/react'], function(React) {
       }
     },
     login: function() {
-      this.props.login(this.state.url, this.state.username, this.state.password);
+        debugger;
+      this.props.login(this.state.url, this.state.username, this.state.password, this.state.project);
     },
     render: function() {
-      return React.DOM.div({className: "panel panel-default"},
-        React.DOM.div({className: "panel-body"},
-          React.DOM.div({className: "input-group"},
-            React.DOM.span({className: "input-group-addon"}, "Jira URL"),
-            React.DOM.input({type: "text", onChange: this.changeUrl, value: this.state.url, className: "form-control"})
-          ),
-          React.DOM.br(),
-          React.DOM.div({className: "input-group"},
-            React.DOM.span({className: "input-group-addon"}, "Username"),
-            React.DOM.input({type: "text", onChange: this.changeUsername, value: this.state.username, className: "form-control"})
-          ),
-          React.DOM.br(),
-          React.DOM.div({className: "input-group"},
-            React.DOM.span({className: "input-group-addon"}, "Password"),
-            React.DOM.input({type: "password", onKeyUp: this.handleKeyPress, onChange: this.changePassword, value: this.state.password, className: "form-control"})
-          ),
-          React.DOM.div({className: "panel-body"},
-            React.DOM.div({className: "col-xs-12 col-md-12"},
-              React.DOM.button({type: "button", onClick: this.login, className: "btn btn-success btn-block"}, "Login")
-            )
-          )
+      return React.DOM.div({className: "login-screen"},
+          React.DOM.div({className: "login-screen-body"},
+              React.DOM.div({className: "login-screen-title"}, "CONNECTION"),
+              React.DOM.div({className: "login-screen-input-group"},
+                React.DOM.input({type: "text", onChange: this.changeUrl, value: this.state.url, className: "login-screen-input"}),
+                React.DOM.div({className: "login-screen-label"}, "url")
+              ),
+              React.DOM.div({className: "login-screen-input-group"},
+                  React.DOM.input({type: "text", onChange: this.changeProject, value: this.state.project, className: "login-screen-input"}),
+                  React.DOM.div({className: "login-screen-label"}, "Project")
+              ),
+              React.DOM.div({className: "login-screen-input-group"},
+                React.DOM.input({type: "text", onChange: this.changeUsername, value: this.state.username, className: "login-screen-input"}),
+                React.DOM.div({className: "login-screen-label"}, "User")
+              ),
+              React.DOM.div({className: "login-screen-input-group"},
+                React.DOM.input({type: "password", onKeyUp: this.handleKeyPress, onChange: this.changePassword, value: this.state.password, className: "login-screen-input"}),
+                  React.DOM.div({className: "login-screen-label"}, "Pass")
+              ),
+              React.DOM.button({type: "button", onClick: this.login, className: "btn login-screen-button"}, "LOGIN")
         )
       );
     }

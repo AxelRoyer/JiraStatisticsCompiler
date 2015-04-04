@@ -5,7 +5,7 @@ define(['StatCalculator'], function(StatCalculator) {
 
   IssueHandler.prototype.addIssue = function(issue) {
     this.issues.push(issue);
-  }
+  };
 
   IssueHandler.prototype.getIssue = function(issueId) {
     for (var i=0; i < this.issues.length; i++) {
@@ -15,7 +15,7 @@ define(['StatCalculator'], function(StatCalculator) {
       }
     }
     return null;
-  }
+  };
 
   getDataWithJSON = function(callback, username, password, requestUrl) {
     var xhr = new XMLHttpRequest();
@@ -42,7 +42,7 @@ define(['StatCalculator'], function(StatCalculator) {
   setAuthorizationHeader = function(xhr, username, password) {
     var authHeader = "Basic "+btoa(username + ":" + password);
     xhr.setRequestHeader("Authorization", authHeader);
-  }
+  };
 
   if (window.localStorage.getItem("jiraData")) {
     statisticsCalculator = new StatCalculator(JSON.parse(window.localStorage.getItem("jiraData")).issues);
