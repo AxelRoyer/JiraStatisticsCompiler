@@ -1,12 +1,7 @@
 define(['lib/react'], function(React) {
   var ConnectionInProgress = React.createClass({
     getInitialState: function() {
-      return {
-        url: "https://jira.caplin.com",
-        username: "jonp",
-        password: "",
-        project: ""
-      }
+      return {}
     },
     render: function() {
         return React.DOM.section({className:"connection-page"},
