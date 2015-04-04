@@ -20,7 +20,7 @@
 		<script>
             location.hash = 'login';
 			require(['lib/react', 'JiraStatisticsCompilerPanel', 'StatCalculator', 'IssueHandler'], function(React, JiraStatisticsCompilerPanel, StatisticsCalculator, IssueHandler) {
-				React.renderComponent(JiraStatisticsCompilerPanel(), document.getElementById('main'));
+				React.renderComponent(JiraStatisticsCompilerPanel(), document.body);
 				var issueHandler = new IssueHandler();
 			});
 		</script>
