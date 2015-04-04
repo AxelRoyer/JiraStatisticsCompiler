@@ -13,7 +13,7 @@ define(['lib/react', 'components/loginPage', 'components/loadingPage', 'componen
         },
         getInitialState: function() {
           return {
-              page: "login"
+              page: "home"
           }
         },
         selectProject: function(projectId, url, project, username, password) {
