@@ -1,7 +1,6 @@
 define(['lib/react'], function(React) {
   var FilterPanel = React.createClass({
     getInitialState: function() {
-        debugger;
         return {
             components: this.props.data.components,
             reporters: this.props.data.reporters
