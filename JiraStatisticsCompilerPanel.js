@@ -1,19 +1,19 @@
-define(['lib/react', 'LoginPanel', 'components/connectionInProgress', 'components/HomePage'], function(React, LoginPanel, ConnectionPanel, HomePage) {
+define(['lib/react', 'components/loginPage', 'components/loadingPage', 'components/homePage'], function(React, LoginPage, LoadingPage, HomePage) {
     var JiraStatisticsCompilerPanel = React.createClass({
         render: function() {
             if (this.state.page == "connectionInProgress") {
-                return ConnectionPanel();
+                return LoadingPage();
             }
 
             if (this.state.page == "home") {
                 return HomePage();
             }
 
-            return LoginPanel({login: this.login})
+            return LoginPage({login: this.login})
         },
         getInitialState: function() {
           return {
-              page: "home"
+              page: "login"
           }
         },
         selectProject: function(projectId) {

@@ -1,4 +1,4 @@
-define(['lib/react'], function(React) {
+define(['../lib/react'], function(React) {
   var LoginPanel = React.createClass({
     getInitialState: function() {
       return {
