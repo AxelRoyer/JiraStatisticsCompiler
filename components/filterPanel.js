@@ -7,11 +7,40 @@ define(['lib/react'], function(React) {
             priorities: this.props.data.priorities,
             selectedComponent: "all",
             selectedReporter: "all",
-            selectedPriority: "all"
+            selectedPriority: "all",
+            selectedStartDate: "all",
+            selectedEndDate: "all"
         };
     },
     onFilterClicked: function() {
-        debugger;
+        var date = null;
+        var startDate = null;
+        var endDate = null;
+
+        if (this.state.selectedStartDate !== "all") {
+            date = this.state.selectedStartDate.split("-");
+            startDate = new Date(date[0], date[1], date[2]);
+        }
+
+        if (this.state.selectedEndDate !== "all") {
+            date = this.state.selectedEndDate.split("-");
+            endDate = new Date(date[0], date[1], date[2]);
+        }
+
+        if (this.state.selectedEndDate !== "all" && this.state.selectedStartDate !== "all") {
+            if (startDate > endDate) {
+                alert("start date could not be later than end date");
+                return;
+            }
+        }
+
+        this.props.onFilterButtonClicked({
+            selectedComponent: this.state.selectedComponent,
+            selectedReporter: this.state.selectedReporter,
+            selectedPriority: this.state.selectedPriority,
+            selectedStartDate: startDate,
+            selectedEndDate: endDate
+        });
     },
     selectComponent: function(e) {
         this.setState({selectedComponent: e.target.value});
@@ -21,6 +50,12 @@ define(['lib/react'], function(React) {
     },
     selectPriority: function(e) {
         this.setState({selectedPriority: e.target.value});
+    },
+    selectStartDate: function(e) {
+        this.setState({selectedStartDate: e.target.value});
+    },
+    selectEndDate: function(e) {
+        this.setState({selectedEndDate: e.target.value});
     },
     render: function() {
         var components = [
@@ -52,6 +87,16 @@ define(['lib/react'], function(React) {
         }
 
         return React.DOM.menu({className:"home-menu"},
+            React.DOM.div({className: "menu-item"},
+                React.DOM.span({},"From",
+                    React.DOM.input({value: this.state.selectedValue, type:"date", onChange: this.selectStartDate})
+                )
+            ),
+            React.DOM.div({className: "menu-item"},
+                React.DOM.span({},"To",
+                    React.DOM.input({value: this.state.selectedValue, type:"date", onChange: this.selectEndDate})
+                )
+            ),
             React.DOM.div({className: "menu-item"},
                 React.DOM.span({},"Component",
                     React.DOM.select({value: this.state.selectedValue, onChange: this.selectComponent}, components)
