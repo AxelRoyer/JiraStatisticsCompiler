@@ -1,6 +1,6 @@
 define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/mainPage'], function(React, LoginPage, LoadingPage, MainPage) {
     var JiraStatisticsCompilerPanel = React.createClass({
-        render: function() {
+        render: function () {
             if (this.state.page == "connectionInProgress") {
                 return LoadingPage();
             }
@@ -11,21 +11,25 @@ define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/
 
             return LoginPage({login: this.login})
         },
-        getInitialState: function() {
+        getInitialState: function () {
           return {
               page: "login"
           }
         },
-        selectProject: function(projectId, url, project, username, password) {
+        selectProject: function (projectId, url, project, username, password) {
           getDataWithJSON(this.showHomePage, username, password,
-            url + "/rest/api/latest/search?jql=project=" + project + " AND issuetype=Bug&maxResults=1000&expand=changelog");
+            url + "/rest/api/latest/search?jql=project=" + project + " AND issuetype=Bug&maxResults=1000&expand=changelog", this.onLoadingError);
         },
-        login: function(url, username, password, project) {
+        login: function (url, username, password, project) {
             this.setState({page: "connectionInProgress"});
             this.selectProject(80, url, project, username, password);
         },
-        showHomePage: function(data) {
+        showHomePage: function (data) {
             this.setState({data: data, page:"main"});
+        },
+        onLoadingError: function () {
+            this.setState({page: "login"});
+            alert("wrong details");
         }
     });
 

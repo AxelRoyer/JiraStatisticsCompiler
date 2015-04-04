@@ -29,8 +29,11 @@ define(['StatCalculator'], function(StatCalculator) {
         xhr.onreadystatechange = function(response) {
             console.log(xhr.readyState);
             if (xhr.readyState == 4) {
-                //statisticsCalculator = new StatCalculator(JSON.parse(window.localStorage.getItem("jiraData")).issues);
-                successCallback(JSON.parse(xhr.responseText));
+                if (xhr.status === 200) {
+                    successCallback(JSON.parse(xhr.responseText));
+                } else {
+                    errorCallback();
+                }
             }
         };
 
