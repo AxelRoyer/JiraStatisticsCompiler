@@ -1,4 +1,4 @@
-define(['lib/react', 'components/loginPage', 'components/loadingPage', 'components/homePage'], function(React, LoginPage, LoadingPage, HomePage) {
+define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/homePage'], function(React, LoginPage, LoadingPage, HomePage) {
     var JiraStatisticsCompilerPanel = React.createClass({
         render: function() {
             if (this.state.page == "connectionInProgress") {

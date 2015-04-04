@@ -26,7 +26,7 @@ define(['lib/react', 'StatCalculator', 'components/filterPanel'], function(React
                 React.DOM.option({value: "c"}, "c")
             ];
 
-            return React.DOM.select({value: this.state.selectedValue, onChange: this.selectOption}, options);
+            return React.DOM.select({value: this.state.selectedValue, onChange: this.selectOption}, this.state.components);
         }
     });
 
