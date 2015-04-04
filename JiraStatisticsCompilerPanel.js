@@ -25,8 +25,7 @@ define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/
             this.selectProject(80, url, project, username, password);
         },
         showHomePage: function(data) {
-            this.setState({data: data});
-            this.setState({page: "home"});
+            this.setState({data: data, page:"home"});
         }
     });
 
