@@ -1,12 +1,12 @@
-define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/homePage'], function(React, LoginPage, LoadingPage, HomePage) {
+define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/mainPage'], function(React, LoginPage, LoadingPage, MainPage) {
     var JiraStatisticsCompilerPanel = React.createClass({
         render: function() {
             if (this.state.page == "connectionInProgress") {
                 return LoadingPage();
             }
 
-            if (this.state.page == "home") {
-                return HomePage({data: this.state.data});
+            if (this.state.page == "main") {
+                return MainPage({data: this.state.data});
             }
 
             return LoginPage({login: this.login})
@@ -25,7 +25,7 @@ define(['lib/react', 'components/loginPage', 'components/loadPage', 'components/
             this.selectProject(80, url, project, username, password);
         },
         showHomePage: function(data) {
-            this.setState({data: data, page:"home"});
+            this.setState({data: data, page:"main"});
         }
     });
 
