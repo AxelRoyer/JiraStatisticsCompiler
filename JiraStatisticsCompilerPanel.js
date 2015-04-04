@@ -6,7 +6,7 @@ define(['lib/react', 'components/loginPage', 'components/loadingPage', 'componen
             }
 
             if (this.state.page == "home") {
-                return HomePage();
+                return HomePage({data: this.state.data});
             }
 
             return LoginPage({login: this.login})
@@ -16,26 +16,16 @@ define(['lib/react', 'components/loginPage', 'components/loadingPage', 'componen
               page: "login"
           }
         },
-        selectProject: function(projectId) {
-          getDataWithJSON(this.showHomePage, this.state.username, this.state.password,
-          this.state.url + "/rest/api/latest/search?jql=project=" + this.state.project + " AND issuetype=Bug&maxResults=1000&expand=changelog");
+        selectProject: function(projectId, url, project, username, password) {
+          getDataWithJSON(this.showHomePage, username, password,
+            url + "/rest/api/latest/search?jql=project=" + project + " AND issuetype=Bug&maxResults=1000&expand=changelog");
         },
         login: function(url, username, password, project) {
             this.setState({page: "connectionInProgress"});
-            this.state.url = url;
-            this.state.username = username;
-            this.state.password = password;
-            this.state.project = project;
-
-            this.setState({
-                url: url,
-                username: username,
-                password: password,
-                mode: "loggedIn"
-            });
-            this.selectProject(80);
+            this.selectProject(80, url, project, username, password);
         },
-        showHomePage: function() {
+        showHomePage: function(data) {
+            this.setState({data: data});
             this.setState({page: "home"});
         }
     });

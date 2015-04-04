@@ -5,6 +5,26 @@ html, body {
     background-color: whitesmoke;
 }
 
+.home-page {
+    height: 100%;
+    width:100%;
+}
+
+.home-menu {
+    background-color: gray;
+    height:100%;
+    width:200px;
+    display: inline-block;
+}
+
+.home-body {
+    display: inline-block;
+    left: 200px;
+    position:absolute;
+    right:0;
+    height:100%;
+}
+
 .login-page, .connection-page {
     background-color: #303030;
     background-image: url("./background.png");
