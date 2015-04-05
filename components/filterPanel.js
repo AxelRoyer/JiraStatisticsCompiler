@@ -2,9 +2,6 @@ define(['lib/react'], function(React) {
     var FilterPanel = React.createClass({
     getInitialState: function() {
         return {
-            components: this.props.data.components,
-            reporters: this.props.data.reporters,
-            priorities: this.props.data.priorities,
             selectedComponent: "all",
             selectedReporter: "all",
             selectedPriority: "all",
@@ -68,21 +65,21 @@ define(['lib/react'], function(React) {
             React.DOM.option({value: "all"}, "all")
         ];
 
-        for (var i = 0; i < this.state.components.length ; i++) {
+        for (var i = 0; i < this.props.data.components.length ; i++) {
             components.push(
-                React.DOM.option({value: this.state.components[i]}, this.state.components[i])
+                React.DOM.option({value: this.props.data.components[i]}, this.props.data.components[i])
             );
         }
 
-        for (var i = 0; i < this.state.reporters.length ; i++) {
+        for (var i = 0; i < this.props.data.reporters.length ; i++) {
             reporters.push(
-                React.DOM.option({value: this.state.reporters[i]}, this.state.reporters[i])
+                React.DOM.option({value: this.props.data.reporters[i]}, this.props.data.reporters[i])
             );
         }
 
-        for (var i = 0; i < this.state.priorities.length ; i++) {
+        for (var i = 0; i < this.props.data.priorities.length ; i++) {
             priorities.push(
-                React.DOM.option({value: this.state.priorities[i]}, this.state.priorities[i])
+                React.DOM.option({value: this.props.data.priorities[i]}, this.props.data.priorities[i])
             );
         }
 
