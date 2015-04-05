@@ -1,6 +1,12 @@
 /** @jsx React.DOM */
 
 define(['lib/react', 'StatCalculator', 'components/filterPanel', 'lib/rd3'], function(React, StatCalculator, FilterPanel, Rd3) {
+    var BarChart = React.createClass({
+        render: function() {
+            return Rd3.BarChart({data: this.props.data, width: 500, height: 200, title: 'Bar Chart', fill: '#3182bd'});
+        }
+    });
+
     var MainPage = React.createClass({
         getInitialState: function () {
             this.statsManager = new StatCalculator(this.props.data.issues);
@@ -31,7 +37,7 @@ define(['lib/react', 'StatCalculator', 'components/filterPanel', 'lib/rd3'], fun
             return React.DOM.section({className:"home-page"},
                 FilterPanel({data: this.state, onFilterButtonClicked: this.onFilterButtonClicked}),
                 React.DOM.div({className:"home-body"},
-                    Rd3.BarChart({data: barData, width: 500, height: 200, title: 'Bar Chart', fill: '#3182bd'})
+                    BarChart({data: barData})
                 )
             )
         }
