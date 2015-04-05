@@ -77,7 +77,8 @@ define(['lib/react'], function(React) {
             );
         }
 
-        for (var i = 0; i < this.props.data.priorities.length ; i++) {
+        var prioritiesKey = Object.keys(this.props.data.priorities);
+        for (var i = 0; i < prioritiesKey.length ; i++) {
             priorities.push(
                 React.DOM.option({value: this.props.data.priorities[i]}, this.props.data.priorities[i])
             );

@@ -18,65 +18,86 @@ define(['lib/react', 'StatCalculator', 'components/filterPanel', 'lib/rd3'], fun
             return Rd3.BarChart({data: this.props.data, width: 800, height: 300, title: "Priorities", fill: '#3182bd'});
         }
     });
-    //
-    //var ResolutionDate = React.createClass({
-    //    render: function() {
-    //        return Rd3.BarChart({data: this.props.data, width: 800, height: 300, title: "Resolution time", fill: '#3182bd'});
-    //    }
-    //});
 
     var MainPage = React.createClass({
         getInitialState: function () {
             this.statsManager = new StatCalculator(this.props.data.issues);
 
-            var data = this.props.data;
+            var filteredIssues = this.getFilteredIssues({
+                selectedComponent: "all",
+                selectedReporter: "all"
+            });
 
-            var returnValue = this.computeData({});
-            returnValue.data = data;
-
-            return returnValue;
-        },
-        selectOption: function (e) {
-            this.setState({
-                selectedValue: e.target.value
-            })
+            var computedData = this.computeData(filteredIssues);
+            return {
+                data: this.props.data,
+                components: Object.keys(this.statsManager.getComponents()),
+                reporters: Object.keys(this.statsManager.getReporters()),
+                priorities: this.statsManager.getPriorities().priorityMap,
+                productsBugs: computedData.productsBugs,
+                bugsReporters: computedData.bugsReporters,
+                bugPriorities: computedData.bugPriorities
+            };
         },
         onFilterButtonClicked: function(filters) {
-            this.computeData(filters);
+            debugger;
+            var newState = this.computeData(this.getFilteredIssues(filters));
+            debugger;
+            this.setState(newState);
         },
-        computeData: function(filters) {
-            var components = Object.keys(this.statsManager.getComponents());
-            var reporters = Object.keys(this.statsManager.getReporters());
-            var priorities = this.statsManager.getPriorities().priorityMap;
-
+        computeData: function(filteredIssues) {
             var productsBugs = [];
-
-            for (var i = 0; i < components.length ; i++) {
-                productsBugs.push({label: components[i], value: this.statsManager.getComponents()[components[i]].length});
-            }
-
             var bugsReporters = [];
+            var bugPriorities = [];
+            var filteredPriorities = this.statsManager.getPriorities(filteredIssues).issues;
+            var filteredPrioritiesMap = this.statsManager.getPriorities(filteredIssues).priorityMap;
 
-            for (var i = 0; i < reporters.length ; i++) {
-                if (this.statsManager.getReporters()[reporters[i]].length > 5) {
-                    bugsReporters.push({label: reporters[i], value: this.statsManager.getReporters()[reporters[i]].length});
-                }
+            var filteredComponents = this.statsManager.getComponents(filteredIssues);
+            var filteredComponentMap = Object.keys(filteredComponents);
+
+            var filteredReporters = this.statsManager.getReporters(filteredIssues);
+            var filteredReportersMap = Object.keys(this.statsManager.getReporters(filteredIssues));
+
+            for (var i = 0; i < filteredComponentMap.length ; i++) {
+                productsBugs.push({label: filteredComponentMap[i], value: filteredComponents[filteredComponentMap[i]].length});
             }
 
-            var bugPriorities = [];
+            for (var i = 0; i < filteredReportersMap.length ; i++) {
+                bugsReporters.push({label: filteredReportersMap[i], value: filteredReporters[filteredReportersMap[i]].length});
+            }
 
-            for (var i = 1; i <= Object.keys(priorities).length ; i++) {
-                bugPriorities.push({label: priorities[i], value: this.statsManager.getPriorities().issues[i].length});
+            // TODO: refactor priorities
+            for (var i = 0; i < 5 ; i++) {
+                if (filteredPrioritiesMap[i]) {
+                    bugPriorities.push({label: filteredPrioritiesMap[i], value: filteredPriorities[i].length});
+                }
             }
 
             return {
                 productsBugs: productsBugs,
                 bugsReporters: bugsReporters,
-                bugPriorities: bugPriorities,
-                components: components,
-                reporters: reporters,
-                priorities: priorities
+                bugPriorities: bugPriorities
             };
+        },
+        getFilteredIssues: function (filters) {
+            var isFilteredByReporters = false;
+            var isFilteredByComponent = false;
+            var filteredComponents = null;
+            var filteredReporters = null;
+            var filteredIssues = [];
+            var components = this.statsManager.getComponents();
+            var componentsMap = Object.keys(this.statsManager.getComponents());
+
+            if (filters && filters.selectedComponent === "all") {
+                for (var i = 0; i < componentsMap.length ; i++) {
+                    filteredIssues = filteredIssues.concat(components[componentsMap[i]]);
+                }
+            } else {
+                isFilteredByComponent = true;
+                filteredIssues = components[filters.selectedComponent];
+            }
+
+            return filteredIssues;
         },
         render: function () {
             return React.DOM.section({className:"home-page"},
