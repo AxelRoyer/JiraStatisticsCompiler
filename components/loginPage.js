@@ -3,9 +3,9 @@ define(['../lib/react'], function(React) {
     getInitialState: function() {
       return {
         url: "https://jira.caplin.com",
-        username: "jonp",
-        password: "",
-        project: ""
+        username: "axelrb",
+        password: "ctdSeVDp:)",
+        project: "CDBS"
       }
     },
     changeUrl: function(e) {
