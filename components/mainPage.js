@@ -63,7 +63,9 @@ define(['lib/react', 'StatCalculator', 'components/filterPanel', 'lib/rd3'], fun
             }
 
             for (var i = 0; i < filteredReportersMap.length ; i++) {
-                bugsReporters.push({label: filteredReportersMap[i], value: filteredReporters[filteredReportersMap[i]].length});
+                if (filteredReporters[filteredReportersMap[i]].length > 5) {
+                    bugsReporters.push({label: filteredReportersMap[i], value: filteredReporters[filteredReportersMap[i]].length});
+                }
             }
 
             // TODO: refactor priorities
