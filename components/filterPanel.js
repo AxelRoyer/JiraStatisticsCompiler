@@ -85,32 +85,37 @@ define(['lib/react'], function(React) {
         }
 
         return React.DOM.menu({className:"home-menu"},
-            React.DOM.div({className: "menu-item"},
-                React.DOM.span({},"From",
+            React.DOM.div({className: "home-menu-item"},
+                React.DOM.span({className:"home-menu-item-label"},"From"),
+                React.DOM.span({className:"home-menu-item-input"},
                     React.DOM.input({value: this.state.selectedValue, type:"date", onChange: this.selectStartDate})
                 )
             ),
-            React.DOM.div({className: "menu-item"},
-                React.DOM.span({},"To",
+            React.DOM.div({className: "home-menu-item"},
+                React.DOM.span({className:"home-menu-item-label"},"To"),
+                React.DOM.span({className:"home-menu-item-input"},
                     React.DOM.input({value: this.state.selectedValue, type:"date", onChange: this.selectEndDate})
                 )
             ),
-            React.DOM.div({className: "menu-item"},
-                React.DOM.span({},"Component",
+            React.DOM.div({className: "home-menu-item"},
+                React.DOM.span({className:"home-menu-item-label"},"Component"),
+                React.DOM.span({className:"home-menu-item-input"},
                     React.DOM.select({value: this.state.selectedValue, onChange: this.selectComponent}, components)
                 )
             ),
-            React.DOM.div({className: "menu-item"},
-                React.DOM.span({},"Reporter",
+            React.DOM.div({className: "home-menu-item"},
+                React.DOM.span({className:"home-menu-item-label"},"Reporter"),
+                React.DOM.span({className:"home-menu-item-input"},
                     React.DOM.select({value: this.state.selectedValue, onChange: this.selectReporter}, reporters)
                 )
             ),
-            React.DOM.div({className: "menu-item"},
-                React.DOM.span({},"Priorities",
+            React.DOM.div({className: "home-menu-item"},
+                React.DOM.span({className:"home-menu-item-label"},"Priorities"),
+                React.DOM.span({className:"home-menu-item-input"},
                     React.DOM.select({value: this.state.selectedValue, onChange: this.selectPriority}, priorities)
                 )
             ),
-            React.DOM.button({type: "button", onClick: this.onFilterClicked, className: "btn login-screen-button"}, "Show")
+            React.DOM.button({type: "button", onClick: this.onFilterClicked, className: "btn home-menu-item-button"}, "Show")
         );
     }
     });

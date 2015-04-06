@@ -5,25 +5,7 @@ html, body {
     background-color: whitesmoke;
 }
 
-.home-page {
-    height: 100%;
-    width:100%;
-}
-
-.home-menu {
-    background-color: gray;
-    height:100%;
-    width:200px;
-    display: inline-block;
-}
-
-.home-body {
-    display: inline-block;
-    left: 200px;
-    position:absolute;
-    right:0;
-    height:100%;
-}
+/************ LOGIN PAGE **************/
 
 .login-page, .connection-page {
     background-color: #303030;
@@ -91,3 +73,61 @@ html, body {
     height:30px;
     margin: 10px auto;
 }
+
+/************* HOME PAGE ************/
+.home-page {
+    height: 100%;
+    width:100%;
+}
+
+.home-body {
+    display: inline-block;
+    left: 250px;
+    position:absolute;
+    right:0;
+    height:100%;
+}
+
+/************* HOME MENU ************/
+
+.home-menu {
+    background-color: black;
+    height:100%;
+    width:250px;
+    display: inline-block;
+    text-align: center;
+}
+
+.home-menu-item {
+    height: 30px;
+    border-bottom: 1px solid darkgoldenrod;
+    line-height: 30px;
+    text-align: left;
+}
+
+.home-menu-item-label {
+    font-size: 12px;
+    display: inline-block;
+    color: white;
+    padding-left: 5px;
+    width:65px;
+}
+
+.home-menu-item-input {
+    width: calc(100% - 75px);
+}
+
+.home-menu-item-input > input,
+.home-menu-item-input > select, {
+    width: 100%;
+}
+
+.home-menu-item-button {
+    background-color: darkgoldenrod;
+    width: 90%;
+    margin-top: 10px;
+    height: 30px;
+    border: 1px solid darkgoldenrod;
+}
+
+
