@@ -130,4 +130,10 @@ html, body {
     border: 1px solid darkgoldenrod;
 }
 
+.home-menu-header {
+    color: goldenrod;
+    margin: 5px;
+    font-size: 22px;
+}
+
 

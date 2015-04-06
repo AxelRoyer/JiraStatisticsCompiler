@@ -85,6 +85,7 @@ define(['lib/react'], function(React) {
         }
 
         return React.DOM.menu({className:"home-menu"},
+            React.DOM.header({className: "home-menu-header"}, "Filters"),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"From"),
                 React.DOM.span({className:"home-menu-item-input"},
