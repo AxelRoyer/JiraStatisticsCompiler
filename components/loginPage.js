@@ -4,9 +4,9 @@ var LoginPanel = React.createClass({
     getInitialState: function() {
       return {
         url: "https://jira.caplin.com",
-        username: "axelrb",
-        password: "ctdSeVDp:)",
-        project: "CDBS"
+        username: "",
+        password: "",
+        project: ""
       }
     },
     changeUrl: function(e) {
