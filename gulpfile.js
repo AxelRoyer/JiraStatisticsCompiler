@@ -9,9 +9,29 @@ var streamify = require('gulp-streamify');
 var notify = require('gulp-notify');
 var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
+var sass = require('gulp-sass');
+var dependencies = ['react'];
+var paths = {};
 
-var dependencies = [
-	'react'];
+paths.styles = [
+  './styles/*.scss'
+];
+
+gulp.task('sass-build', function () {
+  gulp.src(paths.styles)
+      .pipe(sass({
+        includePaths: require('node-bourbon').includePaths
+      }))
+      .on("error", errorAlert)
+      .pipe(gulp.dest('./styles'));
+});
+
+gulp.task('sass-watch', function () {
+  gulp.src(paths.styles)
+      .on("error", errorAlert)
+      .pipe(gulp.dest('./styles'));
+  gulp.watch(paths.styles, ['sass-build'])
+});
 
 var browserifyTask = function (options) {
   // Our app bundler
@@ -80,3 +100,7 @@ gulp.task('default', function () {
     dest: './build'
   });
 });
+
+function errorAlert (error) {
+  console.log(error.message);
+}

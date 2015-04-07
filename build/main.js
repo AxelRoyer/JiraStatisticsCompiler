@@ -3,7 +3,7 @@
 var React = require('react');
 var App = require('./App.js');
 React.render(React.createElement(App, null), document.body);
-},{"./App.js":"/Users/axelrb/perso/react-app-boilerplate/app/App.js","react":"react"}],"/Users/axelrb/perso/react-app-boilerplate/app/App.js":[function(require,module,exports){
+},{"./App.js":"/Users/axelrb/perso/JiraStatisticsCompiler/app/App.js","react":"react"}],"/Users/axelrb/perso/JiraStatisticsCompiler/app/App.js":[function(require,module,exports){
 /** @jsx React.DOM */
 var React = require('react');
 var LoginPage = require("./../components/loginPage");
@@ -45,7 +45,7 @@ var App = React.createClass({displayName: "App",
 	
 module.exports = App;
 
-},{"./../components/IssueHandler":"/Users/axelrb/perso/react-app-boilerplate/components/IssueHandler.js","./../components/loadPage":"/Users/axelrb/perso/react-app-boilerplate/components/loadPage.js","./../components/loginPage":"/Users/axelrb/perso/react-app-boilerplate/components/loginPage.js","./../components/mainPage":"/Users/axelrb/perso/react-app-boilerplate/components/mainPage.js","react":"react"}],"/Users/axelrb/perso/react-app-boilerplate/components/IssueHandler.js":[function(require,module,exports){
+},{"./../components/IssueHandler":"/Users/axelrb/perso/JiraStatisticsCompiler/components/IssueHandler.js","./../components/loadPage":"/Users/axelrb/perso/JiraStatisticsCompiler/components/loadPage.js","./../components/loginPage":"/Users/axelrb/perso/JiraStatisticsCompiler/components/loginPage.js","./../components/mainPage":"/Users/axelrb/perso/JiraStatisticsCompiler/components/mainPage.js","react":"react"}],"/Users/axelrb/perso/JiraStatisticsCompiler/components/IssueHandler.js":[function(require,module,exports){
 function IssueHandler() {
     this.issues = [];
 }
@@ -95,7 +95,7 @@ setAuthorizationHeader = function(xhr, username, password) {
 
 module.exports = IssueHandler;
 
-},{}],"/Users/axelrb/perso/react-app-boilerplate/components/StatisticsCalculator.js":[function(require,module,exports){
+},{}],"/Users/axelrb/perso/JiraStatisticsCompiler/components/StatisticsCalculator.js":[function(require,module,exports){
 function StatisticsCalculator(issueArray) {
   this.issueArray = issueArray;
 }
@@ -360,7 +360,7 @@ StatisticsCalculator.prototype.getColumnDuration = function(optionalIssues) {
 
 module.exports = StatisticsCalculator;
 
-},{}],"/Users/axelrb/perso/react-app-boilerplate/components/filterPanel.js":[function(require,module,exports){
+},{}],"/Users/axelrb/perso/JiraStatisticsCompiler/components/filterPanel.js":[function(require,module,exports){
 var React = require('react');
 var Select = require('react-select');
 
@@ -482,7 +482,7 @@ var FilterPanel = React.createClass({displayName: "FilterPanel",
 
 module.exports = FilterPanel;
 
-},{"react":"react","react-select":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/lib/Select.js"}],"/Users/axelrb/perso/react-app-boilerplate/components/loadPage.js":[function(require,module,exports){
+},{"react":"react","react-select":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/lib/Select.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/components/loadPage.js":[function(require,module,exports){
 var React = require('react');
 
 var ConnectionInProgress = React.createClass({displayName: "ConnectionInProgress",
@@ -500,7 +500,7 @@ var ConnectionInProgress = React.createClass({displayName: "ConnectionInProgress
 });
 
 module.exports = ConnectionInProgress;
-},{"react":"react"}],"/Users/axelrb/perso/react-app-boilerplate/components/loginPage.js":[function(require,module,exports){
+},{"react":"react"}],"/Users/axelrb/perso/JiraStatisticsCompiler/components/loginPage.js":[function(require,module,exports){
 var React = require('react');
 
 var LoginPanel = React.createClass({displayName: "LoginPanel",
@@ -568,7 +568,7 @@ var LoginPanel = React.createClass({displayName: "LoginPanel",
 
 module.exports = LoginPanel;
 
-},{"react":"react"}],"/Users/axelrb/perso/react-app-boilerplate/components/mainPage.js":[function(require,module,exports){
+},{"react":"react"}],"/Users/axelrb/perso/JiraStatisticsCompiler/components/mainPage.js":[function(require,module,exports){
 var React = require('react');
 var StatCalculator = require("./StatisticsCalculator");
 var FilterPanel = require("./filterPanel");
@@ -738,7 +738,7 @@ var MainPage = React.createClass({displayName: "MainPage",
 });
 
 module.exports = MainPage;
-},{"./StatisticsCalculator":"/Users/axelrb/perso/react-app-boilerplate/components/StatisticsCalculator.js","./filterPanel":"/Users/axelrb/perso/react-app-boilerplate/components/filterPanel.js","react":"react","react-chartjs":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/index.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/chart.js/Chart.js":[function(require,module,exports){
+},{"./StatisticsCalculator":"/Users/axelrb/perso/JiraStatisticsCompiler/components/StatisticsCalculator.js","./filterPanel":"/Users/axelrb/perso/JiraStatisticsCompiler/components/filterPanel.js","react":"react","react-chartjs":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/index.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/chart.js/Chart.js":[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -4216,7 +4216,7 @@ module.exports = MainPage;
 
 
 }).call(this);
-},{}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/index.js":[function(require,module,exports){
+},{}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/index.js":[function(require,module,exports){
 module.exports = {
   Bar: require('./lib/bar'),
   Doughnut: require('./lib/doughnut'),
@@ -4227,12 +4227,12 @@ module.exports = {
   createClass: require('./lib/core').createClass
 };
 
-},{"./lib/bar":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/bar.js","./lib/core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js","./lib/doughnut":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/doughnut.js","./lib/line":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/line.js","./lib/pie":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/pie.js","./lib/polar-area":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/polar-area.js","./lib/radar":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/radar.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/bar.js":[function(require,module,exports){
+},{"./lib/bar":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/bar.js","./lib/core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js","./lib/doughnut":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/doughnut.js","./lib/line":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/line.js","./lib/pie":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/pie.js","./lib/polar-area":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/polar-area.js","./lib/radar":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/radar.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/bar.js":[function(require,module,exports){
 var vars = require('./core');
 
 module.exports = vars.createClass('Bar', ['getBarsAtEvent']);
 
-},{"./core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js":[function(require,module,exports){
+},{"./core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js":[function(require,module,exports){
 module.exports = {
   createClass: function(chartType, methodNames, dataKey) {
     var classData = {
@@ -4338,32 +4338,32 @@ var updatePoints = function(nextProps, chart, dataKey) {
 
 
 
-},{"chart.js":"/Users/axelrb/perso/react-app-boilerplate/node_modules/chart.js/Chart.js","react":"react"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/doughnut.js":[function(require,module,exports){
+},{"chart.js":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/chart.js/Chart.js","react":"react"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/doughnut.js":[function(require,module,exports){
 var vars = require('./core');
 
 module.exports = vars.createClass('Doughnut', ['getSegmentsAtEvent']);
 
-},{"./core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/line.js":[function(require,module,exports){
+},{"./core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/line.js":[function(require,module,exports){
 var vars = require('./core');
 
 module.exports = vars.createClass('Line', ['getPointsAtEvent']);
 
-},{"./core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/pie.js":[function(require,module,exports){
+},{"./core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/pie.js":[function(require,module,exports){
 var vars = require('./core');
 
 module.exports = vars.createClass('Pie', ['getSegmentsAtEvent']);
 
-},{"./core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/polar-area.js":[function(require,module,exports){
+},{"./core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/polar-area.js":[function(require,module,exports){
 var vars = require('./core');
 
 module.exports = vars.createClass('PolarArea', ['getSegmentsAtEvent']);
 
-},{"./core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/radar.js":[function(require,module,exports){
+},{"./core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/radar.js":[function(require,module,exports){
 var vars = require('./core');
 
 module.exports = vars.createClass('Radar', ['getPointsAtEvent']);
 
-},{"./core":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/lib/Select.js":[function(require,module,exports){
+},{"./core":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-chartjs/lib/core.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/lib/Select.js":[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -5044,7 +5044,7 @@ var Select = React.createClass({
 });
 
 module.exports = Select;
-},{"./Value":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/lib/Value.js","classnames":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/node_modules/classnames/index.js","lodash":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/node_modules/lodash/index.js","react":"react","react-input-autosize":"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/node_modules/react-input-autosize/lib/AutosizeInput.js"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/lib/Value.js":[function(require,module,exports){
+},{"./Value":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/lib/Value.js","classnames":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/node_modules/classnames/index.js","lodash":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/node_modules/lodash/index.js","react":"react","react-input-autosize":"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/node_modules/react-input-autosize/lib/AutosizeInput.js"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/lib/Value.js":[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -5097,7 +5097,7 @@ var Option = React.createClass({
 });
 
 module.exports = Option;
-},{"react":"react"}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/node_modules/classnames/index.js":[function(require,module,exports){
+},{"react":"react"}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/node_modules/classnames/index.js":[function(require,module,exports){
 function classNames() {
 	var classes = '';
 	var arg;
@@ -5129,7 +5129,7 @@ if (typeof module !== 'undefined' && module.exports) {
 	module.exports = classNames;
 }
 
-},{}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/node_modules/lodash/index.js":[function(require,module,exports){
+},{}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/node_modules/lodash/index.js":[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -16937,7 +16937,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],"/Users/axelrb/perso/react-app-boilerplate/node_modules/react-select/node_modules/react-input-autosize/lib/AutosizeInput.js":[function(require,module,exports){
+},{}],"/Users/axelrb/perso/JiraStatisticsCompiler/node_modules/react-select/node_modules/react-input-autosize/lib/AutosizeInput.js":[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
