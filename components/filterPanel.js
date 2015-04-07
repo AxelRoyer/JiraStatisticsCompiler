@@ -97,19 +97,19 @@ var FilterPanel = React.createClass({
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"Component"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.createElement(Select, {name: "componentSelector", value: this.state.selectedValue, onChange: this.selectComponent, options: components})
+                    React.createElement(Select, {name: "componentSelector", value: this.state.selectedComponent, onChange: this.selectComponent, options: components})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"Reporter"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.createElement(Select, {name: "prioritiesSelector", value: this.state.selectedValue, onChange: this.selectReporter, options: reporters})
+                    React.createElement(Select, {name: "prioritiesSelector", value: this.state.selectedReporter, onChange: this.selectReporter, options: reporters})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"Priorities"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.createElement(Select, {name: "reportersSelector", value: this.state.selectedValue, onChange: this.selectPriority, options: priorities})
+                    React.createElement(Select, {name: "reportersSelector", value: this.state.selectedPriority, onChange: this.selectPriority, options: priorities})
                 )
             ),
             React.DOM.button({type: "button", onClick: this.onFilterClicked, className: "btn home-menu-item-button"}, "Show")
