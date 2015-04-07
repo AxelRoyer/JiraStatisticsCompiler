@@ -1,29 +1,11 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Agile Board Stock Taker</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
-		<link href="styles/reset.css" rel="stylesheet">
-		<link href="styles/style.css" rel="stylesheet">
-		<script src="lib/require.js"></script>
-	</head>
-	<body>
-		<div id="main"></div>
-		<script type="text/javascript">
-			function parseDate(dateTimeString) {
-				var dateString = dateTimeString.substr(0,dateTimeString.indexOf("T"));
-				var dateArray = dateString.split("-");
-				var date = new Date(dateArray[0],dateArray[1]-1,dateArray[2]);
-				return date;
-			}
-		</script>
-
-		<script>
-            location.hash = 'login';
-			require(['lib/react', 'JiraStatisticsCompilerPanel', 'StatCalculator', 'IssueHandler'], function(React, JiraStatisticsCompilerPanel, StatisticsCalculator, IssueHandler) {
-				React.renderComponent(JiraStatisticsCompilerPanel(), document.body);
-				var issueHandler = new IssueHandler();
-			});
-		</script>
-	</body>
+  <head>
+    <link rel="stylesheet" href="styles/reset.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+  </head>
+  <body>
+    <script src="build/vendors.js"></script>
+    <script src="build/main.js"></script>
+  </body>
 </html>

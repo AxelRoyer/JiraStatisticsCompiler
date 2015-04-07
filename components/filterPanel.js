@@ -1,12 +1,14 @@
-define(['lib/react'], function(React) {
-    var FilterPanel = React.createClass({
+var React = require('react');
+var Select = require('react-select');
+
+var FilterPanel = React.createClass({
     getInitialState: function() {
         return {
             selectedComponent: "all",
             selectedReporter: "all",
             selectedPriority: "all",
-            selectedStartDate: "all",
-            selectedEndDate: "all"
+            selectedStartDate: "",
+            selectedEndDate: ""
         };
     },
     onFilterClicked: function() {
@@ -14,17 +16,17 @@ define(['lib/react'], function(React) {
         var startDate = null;
         var endDate = null;
 
-        if (this.state.selectedStartDate !== "all") {
+        if (this.state.selectedStartDate !== "") {
             date = this.state.selectedStartDate.split("-");
-            startDate = new Date(date[0], date[1], date[2]);
+            startDate = new Date(date[0], date[1] - 1, date[2]);
         }
 
-        if (this.state.selectedEndDate !== "all") {
+        if (this.state.selectedEndDate !== "") {
             date = this.state.selectedEndDate.split("-");
-            endDate = new Date(date[0], date[1], date[2]);
+            endDate = new Date(date[0], date[1] - 1, date[2]);
         }
 
-        if (this.state.selectedEndDate !== "all" && this.state.selectedStartDate !== "all") {
+        if (this.state.selectedEndDate !== "" && this.state.selectedStartDate !== "") {
             if (startDate > endDate) {
                 alert("start date could not be later than end date");
                 return;
@@ -39,49 +41,43 @@ define(['lib/react'], function(React) {
             selectedEndDate: endDate
         });
     },
-    selectComponent: function(e) {
-        this.setState({selectedComponent: e.target.value});
+    selectComponent: function(selectedItem) {
+        this.setState({selectedComponent: selectedItem});
     },
-    selectReporter: function(e) {
-        this.setState({selectedReporter: e.target.value});
+    selectReporter: function(selectedItem) {
+        this.setState({selectedReporter: selectedItem});
     },
-    selectPriority: function(e) {
-        this.setState({selectedPriority: e.target.value});
+    selectPriority: function(selectedItem) {
+        this.setState({selectedPriority: selectedItem});
     },
-    selectStartDate: function(e) {
-        this.setState({selectedStartDate: e.target.value});
+    selectStartDate: function(event) {
+        this.setState({selectedStartDate: event.target.value});
     },
-    selectEndDate: function(e) {
-        this.setState({selectedEndDate: e.target.value});
+    selectEndDate: function(event) {
+        this.setState({selectedEndDate: event.target.value});
     },
     render: function() {
         var components = [
-            React.DOM.option({value: "all"}, "all")
+            {value: "all", label: "all"}
         ];
         var reporters = [
-            React.DOM.option({value: "all"}, "all")
+            {value: "all", label: "all"}
         ];
         var priorities = [
-            React.DOM.option({value: "all"}, "all")
+            {value: "all", label: "all"}
         ];
 
         for (var i = 0; i < this.props.data.components.length ; i++) {
-            components.push(
-                React.DOM.option({value: this.props.data.components[i]}, this.props.data.components[i])
-            );
+            components.push({value: this.props.data.components[i], label: this.props.data.components[i]})
         }
 
         for (var i = 0; i < this.props.data.reporters.length ; i++) {
-            reporters.push(
-                React.DOM.option({value: this.props.data.reporters[i]}, this.props.data.reporters[i])
-            );
+            reporters.push({value: this.props.data.reporters[i], label: this.props.data.reporters[i]})
         }
 
         var prioritiesKey = Object.keys(this.props.data.priorities);
         for (var i = 0; i < prioritiesKey.length ; i++) {
-            priorities.push(
-                React.DOM.option({value: this.props.data.priorities[i]}, this.props.data.priorities[i])
-            );
+            priorities.push({value: this.props.data.priorities[i], label: this.props.data.priorities[i]})
         }
 
         return React.DOM.menu({className:"home-menu"},
@@ -89,37 +85,36 @@ define(['lib/react'], function(React) {
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"From"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.DOM.input({value: this.state.selectedValue, type:"date", onChange: this.selectStartDate})
+                    React.createElement("input", {value: this.state.selectedValue, type:"date", onChange: this.selectStartDate})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"To"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.DOM.input({value: this.state.selectedValue, type:"date", onChange: this.selectEndDate})
+                    React.createElement("input", {value: this.state.selectedValue, type:"date", onChange: this.selectEndDate})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"Component"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.DOM.select({value: this.state.selectedValue, onChange: this.selectComponent}, components)
+                    React.createElement(Select, {name: "componentSelector", value: this.state.selectedValue, onChange: this.selectComponent, options: components})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"Reporter"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.DOM.select({value: this.state.selectedValue, onChange: this.selectReporter}, reporters)
+                    React.createElement(Select, {name: "prioritiesSelector", value: this.state.selectedValue, onChange: this.selectReporter, options: reporters})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"Priorities"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.DOM.select({value: this.state.selectedValue, onChange: this.selectPriority}, priorities)
+                    React.createElement(Select, {name: "reportersSelector", value: this.state.selectedValue, onChange: this.selectPriority, options: priorities})
                 )
             ),
             React.DOM.button({type: "button", onClick: this.onFilterClicked, className: "btn home-menu-item-button"}, "Show")
-        );
+        )
     }
-    });
-
-    return FilterPanel;
 });
+
+module.exports = FilterPanel;

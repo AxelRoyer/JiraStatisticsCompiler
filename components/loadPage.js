@@ -1,5 +1,6 @@
-define(['lib/react'], function(React) {
-  var ConnectionInProgress = React.createClass({
+var React = require('react');
+
+var ConnectionInProgress = React.createClass({
     getInitialState: function() {
       return {}
     },
@@ -11,7 +12,6 @@ define(['lib/react'], function(React) {
             )
         );
     }
-  });
-
-  return ConnectionInProgress;
 });
+
+module.exports = ConnectionInProgress;

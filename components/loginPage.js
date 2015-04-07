@@ -1,5 +1,6 @@
-define(['../lib/react'], function(React) {
-  var LoginPanel = React.createClass({
+var React = require('react');
+
+var LoginPanel = React.createClass({
     getInitialState: function() {
       return {
         url: "https://jira.caplin.com",
@@ -60,7 +61,6 @@ define(['../lib/react'], function(React) {
             )
         );
     }
-  });
-
-  return LoginPanel;
 });
+
+module.exports = LoginPanel;
