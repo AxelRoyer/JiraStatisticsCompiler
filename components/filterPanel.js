@@ -13,8 +13,8 @@ var FilterPanel = React.createClass({
     },
     onFilterClicked: function() {
         var date = null;
-        var startDate = null;
-        var endDate = null;
+        var startDate = "";
+        var endDate = "";
 
         if (this.state.selectedStartDate !== "") {
             date = this.state.selectedStartDate.split("-");
