@@ -99,17 +99,21 @@ body {
 
 .home-body {
   display: inline-block;
-  left: 210px;
-  position: absolute;
-  right: 0;
-  height: 100%; }
+  height: 100%;
+  width: 100%;
+  margin-left: 210px;
+  overflow: auto; }
+  .home-body canvas {
+    display: block; }
 
 .home-menu {
   background-color: black;
-  height: 100%;
   width: 210px;
   display: inline-block;
-  text-align: center; }
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0; }
 
 .home-menu-item {
   height: 50px;
