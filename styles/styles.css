@@ -116,7 +116,7 @@ body {
   bottom: 0; }
 
 .home-menu-item {
-  height: 50px;
+  height: 45px;
   border-bottom: 1px solid darkgoldenrod;
   line-height: 30px;
   text-align: left; }
@@ -126,11 +126,16 @@ body {
   display: inline-block;
   color: white;
   padding-left: 5px;
-  width: 65px; }
+  width: 70px; }
+
+.home-menu-header {
+  color: darkgoldenrod;
+  margin-top: 10px; }
 
 .home-menu-item-input {
   width: calc(100% - 75px);
-  display: inline-block; }
+  display: inline-block;
+  height: 25px; }
 
 .home-menu-item-input > input, .home-menu-item-input > select {
   width: 100%; }
@@ -239,7 +244,8 @@ label {
 */
 .Select {
   position: relative;
-  top: 9px; }
+  top: 9px;
+  height: 100%; }
 
 .Select-control {
   position: relative;
@@ -252,7 +258,8 @@ label {
   color: #333333;
   cursor: default;
   outline: none;
-  transition: all 200ms ease; }
+  transition: all 200ms ease;
+  height: 100%; }
 
 .Select-control:hover {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06); }
@@ -286,10 +293,17 @@ label {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; }
+  white-space: nowrap;
+  font-size: 12px;
+  height: 100%;
+  line-height: 25px;
+  left: 5px; }
 
 .has-value > .Select-control > .Select-placeholder {
   color: #333333; }
+
+.Select-input {
+  height: 100%; }
 
 .Select-input > input {
   cursor: default;
@@ -355,7 +369,7 @@ label {
   margin-top: -ceil(2.5px);
   position: absolute;
   right: 10px;
-  top: 14px;
+  top: 10px;
   width: 0; }
 
 .Select-menu-outer {
@@ -383,7 +397,8 @@ label {
   color: #666666;
   cursor: pointer;
   display: block;
-  padding: 8px 10px; }
+  padding: 0px 0px 0px 5px;
+  font-size: 12px; }
 
 .Select-option:last-child {
   border-bottom-right-radius: 4px;
