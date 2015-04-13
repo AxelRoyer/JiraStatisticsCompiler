@@ -25,7 +25,8 @@ var MainPage = React.createClass({
             productsBugs: computedData.productsBugs,
             bugsReporters: computedData.bugsReporters,
             bugPriorities: computedData.bugPriorities,
-            resolutionTimes: computedData.resolutionTimes
+            resolutionTimes: computedData.resolutionTimes,
+            resolutionStatus: computedData.resolutionStatus
         };
     },
     onFilterButtonClicked: function(filters) {
@@ -38,6 +39,8 @@ var MainPage = React.createClass({
         var bugsReporters = [];
         var bugPriorities = [];
         var resolutionTimeChartData = [];
+        var resolutionStatusChartData = [];
+        var resolutionStatusData = [];
 
         var filteredPriorities = this.statsManager.getPriorities(filteredIssues).issues;
         var filteredPrioritiesMap = this.statsManager.getPriorities(filteredIssues).priorityMap;
@@ -70,6 +73,13 @@ var MainPage = React.createClass({
 
         for (var i = 0; i < noResolutionTimesId.length ; i++) {
             resolutionTimeChartData.push(resolutionTimeData[noResolutionTimesId[i]].length);
+        }
+
+        var resolutionStatusTempData = this.statsManager.getResolution(filteredIssues);
+        var resolutionStatusId = Object.keys(resolutionStatusTempData);
+
+        for (var i = 0; i < resolutionStatusId.length ; i++) {
+            resolutionStatusData.push(resolutionStatusTempData[resolutionStatusId[i]].length);
         }
 
         var componentsChartData = {
@@ -128,13 +138,26 @@ var MainPage = React.createClass({
             ]
         };
 
-        debugger;
+        resolutionStatusChartData = {
+            labels: resolutionStatusId,
+            datasets: [
+                {
+                    label: "Resolution Status",
+                    fillColor: "rgba(151,187,205,0.5)",
+                    strokeColor: "rgba(151,187,205,0.8)",
+                    highlightFill: "rgba(151,187,205,0.75)",
+                    highlightStroke: "rgba(151,187,205,1)",
+                    data: resolutionStatusData
+                }
+            ]
+        };
 
         return {
             productsBugs: componentsChartData,
             bugsReporters: reportersChartData,
             bugPriorities: prioritiesChartData,
-            resolutionTimes: resolutionTimeChartData
+            resolutionTimes: resolutionTimeChartData,
+            resolutionStatus: resolutionStatusChartData
         };
     },
     getFilteredIssues: function (filters) {
@@ -191,7 +214,9 @@ var MainPage = React.createClass({
                 React.createElement("header", {}, "Reporters"),
                 React.createElement(BarChart, {data: this.state.bugsReporters, options:{},  width:"600", height:"450", redraw:true}),
                 React.createElement("header", {}, "Resolution time"),
-                React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"600", height:"450", redraw:true})
+                React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"600", height:"450", redraw:true}),
+                React.createElement("header", {}, "Resolution Status"),
+                React.createElement(BarChart, {data: this.state.resolutionStatus, options:{},  width:"600", height:"450", redraw:true})
             )
         )
     }
