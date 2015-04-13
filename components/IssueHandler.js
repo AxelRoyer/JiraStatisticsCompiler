@@ -17,7 +17,7 @@ IssueHandler.prototype.getIssue = function(issueId) {
     return null;
 };
 
-getDataWithJSON = function(successCallback, username, password, requestUrl, errorCallback) {
+getDataWithJSON = function(successCallback, username, password, requestUrl, errorCallback, onProgressCallback) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://cors-anywhere.herokuapp.com/" + requestUrl);
 
@@ -26,7 +26,7 @@ getDataWithJSON = function(successCallback, username, password, requestUrl, erro
     }
 
     xhr.onreadystatechange = function(response) {
-        console.log(xhr.readyState);
+        onProgressCallback();
         if (xhr.readyState == 4) {
             if (xhr.status === 200) {
                 successCallback(JSON.parse(xhr.responseText));
