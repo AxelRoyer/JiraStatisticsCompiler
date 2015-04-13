@@ -26,7 +26,8 @@ var MainPage = React.createClass({
             bugsReporters: computedData.bugsReporters,
             bugPriorities: computedData.bugPriorities,
             resolutionTimes: computedData.resolutionTimes,
-            resolutionStatus: computedData.resolutionStatus
+            resolutionStatus: computedData.resolutionStatus,
+            columnDuration: computedData.columnDuration
         };
     },
     onFilterButtonClicked: function(filters) {
@@ -152,18 +153,54 @@ var MainPage = React.createClass({
             ]
         };
 
-
-
         return {
             productsBugs: componentsChartData,
             bugsReporters: reportersChartData,
             bugPriorities: prioritiesChartData,
             resolutionTimes: resolutionTimeChartData,
-            resolutionStatus: resolutionStatusChartData
+            resolutionStatus: resolutionStatusChartData,
+            columnDuration: this.getColumnDurationChartData(this.statsManager.getColumnDuration(filteredIssues))
         };
     },
     getColumnDurationChartData: function(data) {
-        //TBA
+        var columns = {};
+        var issuesColumns = null;
+        var issueData = null;
+        var chartData = [];
+
+        for (var i = 0 ; i < data.length ; i++) {
+            issueData = data[i];
+            issuesColumns = Object.keys(issueData.columnDuration);
+
+            for (var k = 0 ; k < issuesColumns.length ; k++) {
+                debugger;
+                if (!columns[issuesColumns[k]]) {
+                    columns[issuesColumns[k]] = issueData.columnDuration[issuesColumns[k]];
+                } else {
+                    columns[issuesColumns[k]] = columns[issuesColumns[k]] + issueData.columnDuration[issuesColumns[k]];
+                }
+            }
+        }
+
+        var chartLabels = Object.keys(columns);
+
+        for (var j = 0 ; j < chartLabels.length ; j++) {
+            chartData.push(columns[chartLabels[j]]);
+        }
+
+        return {
+            labels: chartLabels,
+            datasets: [
+                {
+                    label: "Resolution Status",
+                    fillColor: "rgba(151,187,205,0.5)",
+                    strokeColor: "rgba(151,187,205,0.8)",
+                    highlightFill: "rgba(151,187,205,0.75)",
+                    highlightStroke: "rgba(151,187,205,1)",
+                    data: chartData
+                }
+            ]
+        };
     },
     getFilteredIssues: function (filters) {
         var filteredIssues = [];
@@ -221,7 +258,9 @@ var MainPage = React.createClass({
                 React.createElement("header", {}, "Resolution time"),
                 React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"600", height:"450", redraw:true}),
                 React.createElement("header", {}, "Resolution Status"),
-                React.createElement(BarChart, {data: this.state.resolutionStatus, options:{},  width:"600", height:"450", redraw:true})
+                React.createElement(BarChart, {data: this.state.resolutionStatus, options:{},  width:"600", height:"450", redraw:true}),
+                React.createElement("header", {}, "Column duration"),
+                React.createElement(BarChart, {data: this.state.columnDuration, options:{},  width:"600", height:"450", redraw:true})
             )
         )
     }
