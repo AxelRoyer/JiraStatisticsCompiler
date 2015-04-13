@@ -167,6 +167,7 @@ var MainPage = React.createClass({
         var issuesColumns = null;
         var issueData = null;
         var chartData = [];
+        var chartLabels = null;
 
         for (var i = 0 ; i < data.length ; i++) {
             issueData = data[i];
@@ -181,7 +182,7 @@ var MainPage = React.createClass({
             }
         }
 
-        var chartLabels = Object.keys(columns);
+        chartLabels = Object.keys(columns);
 
         for (var j = 0 ; j < chartLabels.length ; j++) {
             chartData.push(columns[chartLabels[j]]);
