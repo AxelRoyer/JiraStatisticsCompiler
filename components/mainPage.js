@@ -168,6 +168,7 @@ var MainPage = React.createClass({
         var issueData = null;
         var chartData = [];
         var chartLabels = null;
+        var columnsNo = {};
 
         for (var i = 0 ; i < data.length ; i++) {
             issueData = data[i];
@@ -176,7 +177,9 @@ var MainPage = React.createClass({
             for (var k = 0 ; k < issuesColumns.length ; k++) {
                 if (!columns[issuesColumns[k]]) {
                     columns[issuesColumns[k]] = issueData.columnDuration[issuesColumns[k]];
+                    columnsNo[issuesColumns[k]] = 1;
                 } else {
+                    columnsNo[issuesColumns[k]] = columnsNo[issuesColumns[k]] + 1;
                     columns[issuesColumns[k]] = columns[issuesColumns[k]] + issueData.columnDuration[issuesColumns[k]];
                 }
             }
@@ -185,7 +188,7 @@ var MainPage = React.createClass({
         chartLabels = Object.keys(columns);
 
         for (var j = 0 ; j < chartLabels.length ; j++) {
-            chartData.push(columns[chartLabels[j]]);
+            chartData.push(columns[chartLabels[j]] / columnsNo[chartLabels[j]]);
         }
 
         return {
@@ -249,17 +252,17 @@ var MainPage = React.createClass({
         return React.createElement("section", {className:"home-page"},
             React.createElement(FilterPanel, {data: this.state, onFilterButtonClicked: this.onFilterButtonClicked}),
             React.createElement("div", {className:"home-body"},
-                React.createElement("header", {}, "Products"),
+                React.createElement("header", {}, "Filtered by products"),
                 React.createElement(BarChart, {data: this.state.productsBugs, options:{},  width:"800", height:"250", redraw:true}),
-                React.createElement("header", {}, "Priorities"),
+                React.createElement("header", {}, "Filtered by priorities"),
                 React.createElement(BarChart, {data: this.state.bugPriorities, options:{},  width:"800", height:"250", redraw:true}),
-                React.createElement("header", {}, "Reporters"),
+                React.createElement("header", {}, "Filtered by reporters"),
                 React.createElement(BarChart, {data: this.state.bugsReporters, options:{},  width:"800", height:"450", redraw:true}),
-                React.createElement("header", {}, "Resolution time"),
+                React.createElement("header", {}, "Filtered by resolution time"),
                 React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"800", height:"450", redraw:true}),
-                React.createElement("header", {}, "Resolution Status"),
+                React.createElement("header", {}, "Filtered by resolution Status"),
                 React.createElement(BarChart, {data: this.state.resolutionStatus, options:{},  width:"800", height:"450", redraw:true}),
-                React.createElement("header", {}, "Column duration"),
+                React.createElement("header", {}, "Filtered by column duration (average)"),
                 React.createElement(BarChart, {data: this.state.columnDuration, options:{},  width:"800", height:"450", redraw:true})
             )
         )
