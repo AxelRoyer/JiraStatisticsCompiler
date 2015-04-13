@@ -249,17 +249,17 @@ var MainPage = React.createClass({
             React.createElement(FilterPanel, {data: this.state, onFilterButtonClicked: this.onFilterButtonClicked}),
             React.createElement("div", {className:"home-body"},
                 React.createElement("header", {}, "Products"),
-                React.createElement(BarChart, {data: this.state.productsBugs, options:{},  width:"600", height:"250", redraw:true}),
+                React.createElement(BarChart, {data: this.state.productsBugs, options:{},  width:"800", height:"250", redraw:true}),
                 React.createElement("header", {}, "Priorities"),
-                React.createElement(BarChart, {data: this.state.bugPriorities, options:{},  width:"600", height:"250", redraw:true}),
+                React.createElement(BarChart, {data: this.state.bugPriorities, options:{},  width:"800", height:"250", redraw:true}),
                 React.createElement("header", {}, "Reporters"),
-                React.createElement(BarChart, {data: this.state.bugsReporters, options:{},  width:"600", height:"450", redraw:true}),
+                React.createElement(BarChart, {data: this.state.bugsReporters, options:{},  width:"800", height:"450", redraw:true}),
                 React.createElement("header", {}, "Resolution time"),
-                React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"600", height:"450", redraw:true}),
+                React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"800", height:"450", redraw:true}),
                 React.createElement("header", {}, "Resolution Status"),
-                React.createElement(BarChart, {data: this.state.resolutionStatus, options:{},  width:"600", height:"450", redraw:true}),
+                React.createElement(BarChart, {data: this.state.resolutionStatus, options:{},  width:"800", height:"450", redraw:true}),
                 React.createElement("header", {}, "Column duration"),
-                React.createElement(BarChart, {data: this.state.columnDuration, options:{},  width:"600", height:"450", redraw:true})
+                React.createElement(BarChart, {data: this.state.columnDuration, options:{},  width:"800", height:"450", redraw:true})
             )
         )
     }

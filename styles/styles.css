@@ -101,10 +101,11 @@ body {
   display: inline-block;
   height: 100%;
   width: 100%;
-  margin-left: 210px;
+  padding-left: 210px;
   overflow: auto; }
   .home-body canvas {
-    display: block; }
+    display: block;
+    margin: 0 auto; }
   .home-body > header {
     height: 30px;
     display: inline-block;
