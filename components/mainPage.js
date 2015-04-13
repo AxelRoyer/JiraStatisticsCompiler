@@ -240,7 +240,7 @@ var MainPage = React.createClass({
         }
 
         if (filters && filters.selectedEndDate !== "") {
-            filteredIssues = this.statsManager.getIssuesCreatedBeforeOrOn(filters.selectedStartDate, filteredIssues);
+            filteredIssues = this.statsManager.getIssuesCreatedBeforeOrOn(filters.selectedEndDate, filteredIssues);
         }
 
         return filteredIssues;
