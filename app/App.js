@@ -10,7 +10,7 @@ var App = React.createClass({
 		return {
 			page: "login",
 			downloadedItems: 0,
-			message: "please wait"
+			message: "please wait..."
 		}
 	},
 	selectProject: function (projectId, url, project, username, password) {
@@ -34,7 +34,7 @@ var App = React.createClass({
 		};
 
 		if (this.state.downloadedItems != 0) {
-			newState.message = this.state.downloadedItems + " item downloaded..."
+			newState.message = this.state.downloadedItems + " items downloaded..."
 		}
 
 		this.setState(newState);
