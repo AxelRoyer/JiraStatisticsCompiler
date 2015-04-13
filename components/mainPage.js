@@ -152,6 +152,8 @@ var MainPage = React.createClass({
             ]
         };
 
+
+
         return {
             productsBugs: componentsChartData,
             bugsReporters: reportersChartData,
@@ -159,6 +161,9 @@ var MainPage = React.createClass({
             resolutionTimes: resolutionTimeChartData,
             resolutionStatus: resolutionStatusChartData
         };
+    },
+    getColumnDurationChartData: function(data) {
+        //TBA
     },
     getFilteredIssues: function (filters) {
         var filteredIssues = [];
