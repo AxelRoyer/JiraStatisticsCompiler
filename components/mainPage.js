@@ -173,7 +173,6 @@ var MainPage = React.createClass({
             issuesColumns = Object.keys(issueData.columnDuration);
 
             for (var k = 0 ; k < issuesColumns.length ; k++) {
-                debugger;
                 if (!columns[issuesColumns[k]]) {
                     columns[issuesColumns[k]] = issueData.columnDuration[issuesColumns[k]];
                 } else {
