@@ -24,7 +24,8 @@ var MainPage = React.createClass({
             priorities: this.statsManager.getPriorities().priorityMap,
             productsBugs: computedData.productsBugs,
             bugsReporters: computedData.bugsReporters,
-            bugPriorities: computedData.bugPriorities
+            bugPriorities: computedData.bugPriorities,
+            resolutionTimes: computedData.resolutionTimes
         };
     },
     onFilterButtonClicked: function(filters) {
@@ -36,6 +37,7 @@ var MainPage = React.createClass({
         var productsBugs = [];
         var bugsReporters = [];
         var bugPriorities = [];
+        var resolutionTimeChartData = [];
 
         var filteredPriorities = this.statsManager.getPriorities(filteredIssues).issues;
         var filteredPrioritiesMap = this.statsManager.getPriorities(filteredIssues).priorityMap;
@@ -61,6 +63,13 @@ var MainPage = React.createClass({
 
         for (var i = 0; i < filteredReportersMap.length ; i++) {
             bugsReporters.push(filteredReporters[filteredReportersMap[i]].length);
+        }
+
+        var resolutionTimeData = this.statsManager.getResolutionTime(filteredIssues);
+        var noResolutionTimesId = Object.keys(resolutionTimeData);
+
+        for (var i = 0; i < noResolutionTimesId.length ; i++) {
+            resolutionTimeChartData.push(resolutionTimeData[noResolutionTimesId[i]].length);
         }
 
         var componentsChartData = {
@@ -105,10 +114,27 @@ var MainPage = React.createClass({
             ]
         };
 
+        resolutionTimeChartData = {
+            labels: noResolutionTimesId,
+            datasets: [
+                {
+                    label: "Resolution time",
+                    fillColor: "rgba(151,187,205,0.5)",
+                    strokeColor: "rgba(151,187,205,0.8)",
+                    highlightFill: "rgba(151,187,205,0.75)",
+                    highlightStroke: "rgba(151,187,205,1)",
+                    data: resolutionTimeChartData
+                }
+            ]
+        };
+
+        debugger;
+
         return {
             productsBugs: componentsChartData,
             bugsReporters: reportersChartData,
-            bugPriorities: prioritiesChartData
+            bugPriorities: prioritiesChartData,
+            resolutionTimes: resolutionTimeChartData
         };
     },
     getFilteredIssues: function (filters) {
@@ -158,9 +184,14 @@ var MainPage = React.createClass({
         return React.createElement("section", {className:"home-page"},
             React.createElement(FilterPanel, {data: this.state, onFilterButtonClicked: this.onFilterButtonClicked}),
             React.createElement("div", {className:"home-body"},
+                React.createElement("header", {}, "Products"),
                 React.createElement(BarChart, {data: this.state.productsBugs, options:{},  width:"600", height:"250", redraw:true}),
+                React.createElement("header", {}, "Priorities"),
                 React.createElement(BarChart, {data: this.state.bugPriorities, options:{},  width:"600", height:"250", redraw:true}),
-                React.createElement(BarChart, {data: this.state.bugsReporters, options:{},  width:"600", height:"450", redraw:true})
+                React.createElement("header", {}, "Reporters"),
+                React.createElement(BarChart, {data: this.state.bugsReporters, options:{},  width:"600", height:"450", redraw:true}),
+                React.createElement("header", {}, "Resolution time"),
+                React.createElement(BarChart, {data: this.state.resolutionTimes, options:{},  width:"600", height:"450", redraw:true})
             )
         )
     }
