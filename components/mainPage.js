@@ -74,6 +74,7 @@ var MainPage = React.createClass({
 
         for (var i = 0; i < noResolutionTimesId.length ; i++) {
             resolutionTimeChartData.push(resolutionTimeData[noResolutionTimesId[i]].length);
+            noResolutionTimesId[i] = noResolutionTimesId[i] + " days";
         }
 
         var resolutionStatusTempData = this.statsManager.getResolution(filteredIssues);
