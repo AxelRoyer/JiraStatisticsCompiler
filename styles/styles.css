@@ -105,6 +105,14 @@ body {
   overflow: auto; }
   .home-body canvas {
     display: block; }
+  .home-body > header {
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    background-color: darkgoldenrod;
+    padding: 0 5px;
+    border-radius: 0 5px 5px 0;
+    margin-top: 20px; }
 
 .home-menu {
   background-color: black;
