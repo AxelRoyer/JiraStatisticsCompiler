@@ -6,7 +6,7 @@ var LoadingPage = require("./../components/loadPage");
 var IssueHandler = require("./../components/IssueHandler");
 
 var App = React.createClass({
-	getInitialState: function () {
+	getInitialState: function() {
 		return {
 			page: "login",
 			downloadedItems: 0,
@@ -21,10 +21,10 @@ var App = React.createClass({
 		this.setState({page: "connectionInProgress"});
 		this.selectProject(80, url, project, username, password);
 	},
-	showHomePage: function (data) {
+	showHomePage: function(data) {
 		this.setState({data: data, page:"home"});
 	},
-	onLoadingError: function () {
+	onLoadingError: function() {
 		this.setState({page: "login"});
 		alert("wrong details");
 	},

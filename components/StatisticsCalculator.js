@@ -71,13 +71,15 @@ function getColumnChanges(issue) {
 }
 
 function getResolutionTime(issue) {
-  var startDate = getStartDate(issue);
-  var resolutionDate = getResolutionDate(issue);
+    var startDate = getStartDate(issue);
+    var resolutionDate = getResolutionDate(issue);
+
+    console.log(issue.key, resolutionDate, issue.self);
 
   if (resolutionDate) {
     return Math.round((resolutionDate - startDate) / 1000 / 60 / 60 / 24);
   }
-  return null;
+  return "no resolution time";
 }
 
 /**
@@ -239,6 +241,21 @@ StatisticsCalculator.prototype.getResolutionTime = function(optionalIssues) {
 
     return resolutionMap;
 }
+
+StatisticsCalculator.prototype.getStartDate = function(optionalIssues) {
+    var issues = optionalIssues ? optionalIssues : this.issueArray;
+    var startDate = null;
+    var date = null;
+
+    for (var i = 0, len = optionalIssues.length ; i < len ; i++) {
+      date = getStartDate(optionalIssues[i]);
+        if (startDate == null || startDate > date) {
+            startDate = date;
+        }
+    }
+
+    return startDate;
+};
 
 /**
 * Returns an array of objects, which includes an issue and a with map of

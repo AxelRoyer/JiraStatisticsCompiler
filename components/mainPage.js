@@ -6,7 +6,7 @@ var BarChart = require("react-chartjs").Bar;
 var MainPage = React.createClass({
     getInitialState: function () {
         this.statsManager = new StatCalculator(this.props.data.issues);
-
+        
         var filteredIssues = this.getFilteredIssues({
             selectedComponent: "all",
             selectedReporter: "all",
@@ -74,7 +74,10 @@ var MainPage = React.createClass({
 
         for (var i = 0; i < noResolutionTimesId.length ; i++) {
             resolutionTimeChartData.push(resolutionTimeData[noResolutionTimesId[i]].length);
-            noResolutionTimesId[i] = noResolutionTimesId[i] + " days";
+
+            if (noResolutionTimesId[i] !== "no resolution time") {
+                noResolutionTimesId[i] = noResolutionTimesId[i] + " days";
+            }
         }
 
         var resolutionStatusTempData = this.statsManager.getResolution(filteredIssues);
