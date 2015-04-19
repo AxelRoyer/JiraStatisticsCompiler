@@ -6,14 +6,16 @@ var BarChart = require("react-chartjs").Bar;
 var MainPage = React.createClass({
     getInitialState: function () {
         this.statsManager = new StatCalculator(this.props.data.issues);
-        
-        var filteredIssues = this.getFilteredIssues({
+
+        var initialFilters = {
             selectedComponent: "all",
             selectedReporter: "all",
             selectedPriority: "all",
             selectedStartDate: "",
-            selectedEndDate: ""
-        });
+            selectedEndDate: new Date()          
+        }
+        
+        var filteredIssues = this.getFilteredIssues(initialFilters);
 
         var computedData = this.computeData(filteredIssues);
 
@@ -27,7 +29,8 @@ var MainPage = React.createClass({
             bugPriorities: computedData.bugPriorities,
             resolutionTimes: computedData.resolutionTimes,
             resolutionStatus: computedData.resolutionStatus,
-            columnDuration: computedData.columnDuration
+            columnDuration: computedData.columnDuration,
+            filters: initialFilters
         };
     },
     onFilterButtonClicked: function(filters) {
@@ -254,7 +257,7 @@ var MainPage = React.createClass({
     },
     render: function () {
         return React.createElement("section", {className:"home-page"},
-            React.createElement(FilterPanel, {data: this.state, onFilterButtonClicked: this.onFilterButtonClicked}),
+            React.createElement(FilterPanel, {data: this.state, onFilterButtonClicked: this.onFilterButtonClicked, filters: this.state.filters}),
             React.createElement("div", {className:"home-body"},
                 React.createElement("header", {}, "Filtered by products"),
                 React.createElement(BarChart, {data: this.state.productsBugs, options:{},  width:"800", height:"250", redraw:true}),

@@ -27,7 +27,8 @@
     "node-bourbon": "^4.2.1-beta1",
     "react": "^0.13.1",
     "react-chartjs": "^0.6.0",
-    "react-select": "^0.4.6"
+    "react-select": "^0.4.6",
+    "swissarmy-input-react": "0.0.22"
   },
   "main": "gulpfile.js",
   "scripts": {

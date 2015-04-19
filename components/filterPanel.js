@@ -3,13 +3,7 @@ var Select = require('react-select');
 
 var FilterPanel = React.createClass({
     getInitialState: function() {
-        return {
-            selectedComponent: "all",
-            selectedReporter: "all",
-            selectedPriority: "all",
-            selectedStartDate: "",
-            selectedEndDate: ""
-        };
+        return this.props.filters;
     },
     onFilterClicked: function() {
         var date = null;
@@ -58,13 +52,13 @@ var FilterPanel = React.createClass({
     },
     render: function() {
         var components = [
-            {value: "all", label: "all"}
+            {value: this.state.selectedComponent, label: "all"}
         ];
         var reporters = [
-            {value: "all", label: "all"}
+            {value: this.state.selectedReporter, label: "all"}
         ];
         var priorities = [
-            {value: "all", label: "all"}
+            {value: this.state.selectedPriority, label: "all"}
         ];
 
         for (var i = 0; i < this.props.data.components.length ; i++) {
@@ -85,13 +79,13 @@ var FilterPanel = React.createClass({
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"From"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.createElement("input", {value: this.state.selectedValue, type:"date", onChange: this.selectStartDate})
+                    React.createElement("input", {value: this.state.selectedStartDate, type:"date", onChange: this.selectStartDate})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
                 React.DOM.span({className:"home-menu-item-label"},"To"),
                 React.DOM.span({className:"home-menu-item-input"},
-                    React.createElement("input", {value: this.state.selectedValue, type:"date", onChange: this.selectEndDate})
+                    React.createElement("input", {value: this.state.selectedEndDate, type:"date", onChange: this.selectEndDate})
                 )
             ),
             React.DOM.div({className: "home-menu-item"},
